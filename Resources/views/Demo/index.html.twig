@@ -1,0 +1,9 @@
+{% extends 'TimuribMailTemplateBundle:Demo:layout.html.twig' %}
+
+{% block body %}
+<ul>
+    {% for code, params in map %}
+    <li><a href="{{ path('timurib_mailtemplate_demo_send', { code: code }) }}">{{ params.label }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

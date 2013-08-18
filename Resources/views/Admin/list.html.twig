@@ -1,0 +1,37 @@
+{% extends base_template %}
+
+{% block list_table %}
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr class="sonata-ba-list-field-header">
+            <th class="sonata-ba-list-field-header">{{ admin.trans('list.header_index') }}</th>
+            <th class="sonata-ba-list-field-header">{{ admin.trans('list.header_label') }}</th>
+            <th class="sonata-ba-list-field-header">{{ admin.trans('list.header_enabled') }}</th>
+            <th class="sonata-ba-list-field-header">{{ admin.trans('list.header_actions') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for code, item in map %}
+        <tr>
+            <td style="text-align:right;">{{ loop.index }}</td>
+            <td>
+                <a href="{{ admin.generateUrl('enable', { code: code }) }}">{{ item.label }}</a>
+            </td>
+            <td>
+                {% if item.object is defined and item.object is not null %}
+                <i class="icon-ok"></i>
+                {% else %}
+                <i class="icon-remove"></i>
+                {% endif %}
+            </td>
+            <td>
+                <a class="btn" href="{{ admin.generateUrl('enable', { code: code }) }}">{{ admin.trans('btn_enable') }}</a>
+                {% if item.object is defined and item.object is not null %}
+                <a class="btn" href="{{ admin.generateUrl('disable', { code: code }) }}">{{ admin.trans('btn_disable') }}</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

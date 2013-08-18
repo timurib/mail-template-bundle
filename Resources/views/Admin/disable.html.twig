@@ -1,0 +1,25 @@
+{% extends base_template %}
+
+{% block content %}
+    <div class="sonata-ba-delete">
+        <h3>{{ admin.trans('title_disable') }}</h3>
+
+        {{ admin.trans('message_disable_confirmation', { '%object%': admin.toString(object) }) }}
+
+        <div class="well form-actions">
+            <form method="POST" action="{{ admin.generateUrl('disable', { code: object.code }) }}">
+                {{ form_widget(form) }}
+
+                <input type="submit" class="btn btn-danger" value="{{ admin.trans('btn_disable') }}" />
+
+                {% if admin.hasRoute('edit') and admin.isGranted('EDIT', object) %}
+                    {{ 'delete_or'|trans({}, 'SonataAdminBundle') }}
+
+                    <a class="btn btn-success" href="{{ admin.generateUrl('enable', { code: object.code }) }}">
+                        <i class="icon-edit"></i>
+                        {{ admin.trans('btn_enable') }}</a>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+{% endblock %}

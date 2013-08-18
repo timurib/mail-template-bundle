@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="timurib.mail_template.entity.class">Timurib\Bundle\MailTemplateBundle\Entity\Template</parameter>
+        <parameter key="timurib.mail_template.admin.class">Timurib\Bundle\MailTemplateBundle\Admin\TemplateAdmin</parameter>
+        <parameter key="timurib.mail_template.controller.class">TimuribMailTemplateBundle:Admin</parameter>
+        <parameter key="timurib.mail_template.manager.class">Timurib\Bundle\MailTemplateBundle\Mail\MessageManager</parameter>
+        <parameter key="timurib.mail_template.twig_validator.class">Timurib\Bundle\MailTemplateBundle\Validator\Constraints\TwigSyntaxValidator</parameter>
+        <parameter key="timurib.mail_template.admin.group">group</parameter>
+        <parameter key="timurib.mail_template.admin.label">label</parameter>
+    </parameters>
+
+    <services>
+        <service id="timurib.mail_template.admin" class="%timurib.mail_template.admin.class%">
+            <tag name="sonata.admin" manager_type="orm"
+                 group="timurib.mail_template.admin.group"
+                 label="timurib.mail_template.admin.label"
+                 label_translator_strategy="sonata.admin.label.strategy.underscore" />
+            <argument />
+            <argument>%timurib.mail_template.entity.class%</argument>
+            <argument>%timurib.mail_template.controller.class%</argument>
+
+            <call method="setTranslationDomain">
+                <argument>TimuribMailTemplateBundle</argument>
+            </call>
+
+            <call method="setTemplates">
+                <argument type="collection">
+                    <argument key="list">TimuribMailTemplateBundle:Admin:list.html.twig</argument>
+                    <argument key="enable">TimuribMailTemplateBundle:Admin:enable.html.twig</argument>
+                    <argument key="disable">TimuribMailTemplateBundle:Admin:disable.html.twig</argument>
+                </argument>
+            </call>
+        </service>
+
+        <service id="timurib.mail_template.repository"
+            class="Doctrine\Common\Persistence\ObjectRepository"
+            factory-service="doctrine"
+            factory-method="getRepository">
+            <argument>%timurib.mail_template.entity.class%</argument>
+        </service>
+
+        <service id="timurib.mail_template.twig_loader" class="Twig_Loader_String" public="false" />
+
+        <service id="timurib.mail_template.twig" class="%twig.class%">
+            <argument type="service" id="timurib.mail_template.twig_loader"/>
+            <argument>%twig.options%</argument>
+        </service>
+
+        <service id="timurib.mail_template.twig_validator" class="%timurib.mail_template.twig_validator.class%">
+            <tag name="validator.constraint_validator" alias="twig_syntax_validator" />
+            <argument type="service" id="timurib.mail_template.twig" />
+        </service>
+
+        <service id="timurib.mail_template.manager" class="%timurib.mail_template.manager.class%">
+            <argument>%timurib_mail_template%</argument>
+            <argument type="service" id="timurib.mail_template.repository"/>
+            <argument type="service" id="timurib.mail_template.twig" />
+            <argument type="service" id="mailer" />
+            <argument type="service" id="logger" />
+        </service>
+    </services>
+
+</container>

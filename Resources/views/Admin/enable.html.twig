@@ -1,0 +1,28 @@
+{% extends base_template %}
+
+
+
+{% block form %}
+<form class="form-horizontal" action="{{ admin.generateUrl('enable', { code: object.code }) }}" method="post">
+    {% if form.vars.errors|length > 0 %}
+        <div class="sonata-ba-form-error">
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
+
+    {{ form_rest(form) }}
+
+    <div class="control-group ">
+        <label class="control-label">{{ admin.trans('form.available_vars') }}</label>
+        <div class="controls">
+            {% for var in vars %}
+            <code>{{ '{{' ~ var ~ '}}' }}</code>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="well form-actions">
+        <input type="submit" class="btn" name="btn_update_and_list" value="{{ 'btn_update_and_return_to_list'|trans({}, 'SonataAdminBundle') }}"/>
+    </div>
+</form>
+{% endblock %}

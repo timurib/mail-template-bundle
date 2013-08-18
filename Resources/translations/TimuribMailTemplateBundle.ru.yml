@@ -1,0 +1,17 @@
+breadcrumb.link_template_list: Список шаблонов
+list:
+  header_index: Номер
+  header_label: Шаблон
+  header_enabled: Состояние
+  header_actions: Действия
+form:
+  from: Отправитель
+  to: Получатель
+  subject: Тема
+  body: Текст
+  available_vars: Доступные переменные
+btn_enable: Настроить
+btn_save: Сохранить
+btn_disable: Отключить
+title_disable: Подтверждение
+message_disable_confirmation: Вы действительно хотите отключить шаблон %object%?

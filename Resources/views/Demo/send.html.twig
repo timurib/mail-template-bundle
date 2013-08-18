@@ -1,0 +1,9 @@
+{% extends 'TimuribMailTemplateBundle:Demo:layout.html.twig' %}
+
+{% block body %}
+    <p>{{ message }}</p>
+    <form action="{{ path(app.request.attributes.get('_route'), { code: code }) }}" method="post">
+        {{ form_widget(form) }}
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}

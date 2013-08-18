@@ -1,0 +1,28 @@
+{
+    "name": "timurib/mail-template-bundle",
+    "type": "symfony-bundle",
+    "description": "Management of twig templates for email messages",
+    "keywords": ["bundle", "mail", "templates", "sonata-admin", "twig", "swift", "doctrine"],
+    "homepage": "http://github.com/timurib/mail-template-bundle",
+    "license": "LGPL v3",
+    "authors": [
+        {
+            "name": "Timur Ibragimov",
+            "email": "timok@ya.ru",
+            "homepage": "http://github.com/timurib"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "doctrine/orm": "2.*",
+        "symfony/swiftmailer-bundle": "2.*",
+        "sonata-project/doctrine-orm-admin-bundle": "2.*",
+        "sonata-project/intl-bundle": "2.*",
+        "symfony/symfony": ">=2.1,<2.4"
+    },
+    "autoload": {
+        "psr-0": { "Timurib\\Bundle\\MailTemplateBundle": "" }
+    },
+    "minimum-stability": "dev",
+    "target-dir": "Timurib/Bundle/MailTemplateBundle"
+}
