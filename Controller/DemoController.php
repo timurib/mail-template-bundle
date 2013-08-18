@@ -6,11 +6,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
+ * Example of usage MessageManager
+ *
  * @author Timur Ibragimov <timok@ya.ru>
  */
 class DemoController extends Controller
 {
     /**
+     * Show available templates list
+     *
      * @Route("/")
      * @Template
      */
@@ -22,6 +26,8 @@ class DemoController extends Controller
     }
 
     /**
+     * Set template's variables and send message
+     *
      * @Route("/send/{code}")
      * @Template
      */
@@ -62,6 +68,8 @@ class DemoController extends Controller
     }
 
     /**
+     * Create form for template's variables
+     *
      * @param array $vars
      * @return \Symfony\Component\Form\Form
      */

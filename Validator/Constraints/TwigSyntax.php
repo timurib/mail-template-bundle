@@ -4,6 +4,8 @@ namespace Timurib\Bundle\MailTemplateBundle\Validator\Constraints;
 use Symfony\Component\Validator\Constraint;
 
 /**
+ * Twig syntax constraint
+ *
  * @author Timur Ibragimov <timok@ya.ru>
  *
  * @Annotation

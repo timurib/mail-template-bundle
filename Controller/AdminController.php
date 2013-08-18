@@ -13,6 +13,12 @@ use Timurib\Bundle\MailTemplateBundle\Form\Type\TemplateType;
  */
 class AdminController extends CRUDController
 {
+    /**
+     * Show list of all templates defined by configuration
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws AccessDeniedException
+     */
     public function listAction()
     {
         if (false === $this->admin->isGranted('LIST')) {
@@ -23,6 +29,16 @@ class AdminController extends CRUDController
         ));
     }
 
+    /**
+     * Set up template attributes and store (create or update) it in ORM
+     *
+     * @TODO: method too big, need refactor
+     *
+     * @param string $code
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws NotFoundHttpException
+     * @throws AccessDeniedException
+     */
     public function enableAction($code = null)
     {
         $config = $this->getConfig();
@@ -81,6 +97,14 @@ class AdminController extends CRUDController
         ));
     }
 
+    /**
+     * Disable template (delete correspond entity from ORM)
+     *
+     * @param string $code
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws NotFoundHttpException
+     * @throws AccessDeniedException
+     */
     public function disableAction($code = null)
     {
         $config = $this->getConfig();

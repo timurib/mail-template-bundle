@@ -25,7 +25,7 @@ class TemplateType extends AbstractType
                 'label' => 'form.body',
                 'attr'  => array(
                     'class' => 'input-xxlarge',
-                    'style' => 'height:150px'
+                    'style' => 'height:150px' // yes, it's very ugly
                 )
             ));
     }

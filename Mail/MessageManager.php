@@ -8,6 +8,8 @@ use Timurib\Bundle\MailTemplateBundle\Mail\Exception\UndefinedTemplateException;
 use Timurib\Bundle\MailTemplateBundle\Mail\Exception\MissingVariableException;
 
 /**
+ * Service for creation and sending messages by templates
+ *
  * @TODO too many functions
  *
  * @author Timur Ibragimov <timok@ya.ru>
